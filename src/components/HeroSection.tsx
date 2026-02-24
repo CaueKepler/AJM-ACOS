@@ -3,6 +3,15 @@ import { Phone, ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-laser.jpg";
 
 const HeroSection = () => {
+  // Função para fazer o scroll suave sem disparar o erro 404 do HashRouter
+  const scrollToServices = (e: React.MouseEvent) => {
+    e.preventDefault(); // Impede o navegador de mudar a URL e dar erro
+    const element = document.getElementById("servicos");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -17,9 +26,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-industrial-dark via-transparent to-transparent" />
       </div>
 
-      
       <div className="relative z-10 container mx-auto px-4 lg:px-8 pt-20 pb-20">
-
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,8 +62,11 @@ const HeroSection = () => {
               <Phone className="w-5 h-5" />
               Solicitar Orçamento Técnico
             </a>
+            
+            {/* BOTÃO AJUSTADO: Adicionamos o onClick={scrollToServices} */}
             <a
               href="#servicos"
+              onClick={scrollToServices}
               className="inline-flex items-center justify-center gap-2 border border-industrial-light/20 text-primary-foreground font-semibold text-base px-8 py-4 rounded hover:bg-primary-foreground/5 transition-all duration-200"
             >
               Conheça Nossos Serviços
