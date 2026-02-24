@@ -10,22 +10,27 @@ const Index = () => {
   return (
     <main className="min-h-screen">
       <Header />
+      
+      {/* A seção Hero geralmente não precisa de ID, pois é o topo */}
       <HeroSection />
       
-      {/* Adicionando os IDs para o menu encontrar as seções */}
-      <section id="servicos">
+      {/* Adicionamos 'scroll-mt-20' (scroll-margin-top).
+          Isso serve para que, ao clicar no menu, a seção não fique 
+          colada no topo ou escondida atrás do Header fixo.
+      */}
+      <section id="servicos" className="scroll-mt-20">
         <ServicesSection />
       </section>
 
-      <section id="setores">
+      <section id="setores" className="scroll-mt-20">
         <SectorsSection />
       </section>
 
-      <section id="diferenciais">
+      <section id="diferenciais" className="scroll-mt-20">
         <DifferentialsSection />
       </section>
 
-      <section id="contato">
+      <section id="contato" className="scroll-mt-20">
         <CtaBanner />
       </section>
 

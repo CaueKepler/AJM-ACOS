@@ -4,27 +4,44 @@ import { motion, AnimatePresence } from "framer-motion";
 import logoAjm from "@/assets/logo-ajm.png";
 
 const navItems = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Sobre Nós", href: "#setores" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Contato", href: "#contato" },
+  { label: "Serviços", id: "servicos" },
+  { label: "Sobre Nós", id: "setores" },
+  { label: "Diferenciais", id: "diferenciais" },
+  { label: "Contato", id: "contato" },
 ];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Função mágica para fazer o scroll sem dar erro 404
+  const scrollToSection = (e: React.MouseEvent, id: string) => {
+    e.preventDefault(); // Impede o erro 404 de rota inexistente
+    const element = document.getElementById(id);
+    if (element) {
+      // Faz o scroll suave até a seção
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false); // Fecha o menu mobile se estiver aberto
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-        <a href="#" className="flex items-center gap-2">
+        <a 
+          href="#" 
+          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          className="flex items-center gap-2"
+        >
           <img src={logoAjm} alt="AJM Aços" className="h-16 w-auto" />
         </a>
 
+        {/* Menu Desktop */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <a
-              key={item.href}
-              href={item.href}
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => scrollToSection(e, item.id)}
               className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 uppercase tracking-wider"
             >
               {item.label}
@@ -52,6 +69,7 @@ const Header = () => {
         </button>
       </div>
 
+      {/* Menu Mobile */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -63,9 +81,9 @@ const Header = () => {
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {navItems.map((item) => (
                 <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => scrollToSection(e, item.id)}
                   className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider"
                 >
                   {item.label}
