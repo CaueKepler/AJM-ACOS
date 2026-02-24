@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 20% 20%;
+
+    --card: 220 20% 97%;
+    --card-foreground: 220 20% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 20%;
+
+    --primary: 224 50% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 220 20% 30%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 224 50% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 224 50% 48%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 224 50% 42%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 224 50% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 50% 38%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 224 40% 50%;
+    --sidebar-ring: 224 50% 48%;
+
+    /* Custom tokens */
+    --industrial-dark: 224 45% 22%;
+    --industrial-charcoal: 224 40% 30%;
+    --industrial-steel: 220 15% 50%;
+    --industrial-light: 220 15% 96%;
+    --spark-orange: 224 50% 48%;
+    --spark-amber: 224 55% 56%;
+    --spark-glow: 224 60% 60%;
+  }
+
+  .dark {
+    --background: 224 40% 10%;
+    --foreground: 0 0% 96%;
+    --card: 224 40% 14%;
+    --card-foreground: 0 0% 96%;
+    --popover: 224 40% 14%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 224 50% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 30% 20%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 224 30% 18%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 224 50% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 224 30% 22%;
+    --input: 224 30% 22%;
+    --ring: 224 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-gradient-spark {
+    background: linear-gradient(135deg, hsl(224 50% 48%), hsl(224 60% 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-industrial-gradient {
+    background: linear-gradient(180deg, hsl(224 45% 18%) 0%, hsl(224 40% 30%) 100%);
+  }
+
+  .bg-spark-gradient {
+    background: linear-gradient(135deg, hsl(224 50% 48%), hsl(224 60% 60%));
+  }
+
+  .shadow-spark {
+    box-shadow: 0 4px 20px -4px hsl(224 50% 48% / 0.3);
+  }
+
+  .shadow-industrial {
+    box-shadow: 0 8px 32px -8px hsl(224 45% 22% / 0.3);
+  }
+}
