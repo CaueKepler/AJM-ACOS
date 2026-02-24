@@ -13,15 +13,20 @@ const navItems = [
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Função mágica para fazer o scroll sem dar erro 404
   const scrollToSection = (e: React.MouseEvent, id: string) => {
-    e.preventDefault(); // Impede o erro 404 de rota inexistente
-    const element = document.getElementById(id);
-    if (element) {
-      // Faz o scroll suave até a seção
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsOpen(false); // Fecha o menu mobile se estiver aberto
+    e.preventDefault();
+    
+    // Primeiro fechamos o menu mobile
+    setIsOpen(false);
+
+    // Damos um pequeno tempo para o menu começar a fechar antes de rolar
+    // Isso resolve o problema de "travar" a rolagem no celular
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   return (
@@ -42,7 +47,7 @@ const Header = () => {
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => scrollToSection(e, item.id)}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 uppercase tracking-wider"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 uppercase tracking-wider cursor-pointer"
             >
               {item.label}
             </a>
@@ -63,7 +68,8 @@ const Header = () => {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-muted-foreground hover:text-primary"
+          className="md:hidden text-muted-foreground hover:text-primary p-2"
+          aria-label="Abrir menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -78,13 +84,13 @@ const Header = () => {
             exit={{ height: 0, opacity: 0 }}
             className="md:hidden bg-background border-t border-border overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <div className="container mx-auto px-4 py-6 flex flex-col gap-6">
               {navItems.map((item) => (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => scrollToSection(e, item.id)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider"
+                  className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider block w-full"
                 >
                   {item.label}
                 </a>
@@ -93,7 +99,7 @@ const Header = () => {
                 href="https://wa.me/554791080045?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-sm px-5 py-2.5 rounded-md shadow-spark"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold text-base px-5 py-3 rounded-md shadow-spark"
               >
                 <Phone className="w-4 h-4" />
                 Solicitar Orçamento
