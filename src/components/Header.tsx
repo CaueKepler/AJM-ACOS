@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import logoAjm from "@/assets/logo-ajm.png";
 
 const navItems = [
-  { label: "Serviços", href: "/#servicos" },
-  { label: "Sobre Nós", href: "/#setores" },
-  { label: "Diferenciais", href: "/#diferenciais" },
-  { label: "Contato", href: "/#contato" },
+  { label: "Serviços", href: "/AJM-ACOS/#servicos" },
+  { label: "Sobre Nós", href: "/AJM-ACOS/#setores" },
+  { label: "Diferenciais", href: "/AJM-ACOS/#diferenciais" },
+  { label: "Contato", href: "/AJM-ACOS/#contato" },
 ];
 
 const Header = () => {
