@@ -8,13 +8,27 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <main>
+    <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <ServicesSection />
-      <SectorsSection />
-      <DifferentialsSection />
-      <CtaBanner />
+      
+      {/* Adicionando os IDs para o menu encontrar as seções */}
+      <section id="servicos">
+        <ServicesSection />
+      </section>
+
+      <section id="setores">
+        <SectorsSection />
+      </section>
+
+      <section id="diferenciais">
+        <DifferentialsSection />
+      </section>
+
+      <section id="contato">
+        <CtaBanner />
+      </section>
+
       <Footer />
     </main>
   );
