@@ -82,7 +82,7 @@ const HeroSection = () => {
           >
             {[
               { value: "200mm", label: "Espessura máx. Oxicorte" },
-              { value: "6", label: "Processos integrados" },
+              { value: "Corte a Laser", label: "Alta Precisão & Acabamento" },
               { value: "CNC", label: "Precisão e repetibilidade" },
             ].map((stat) => (
               <div key={stat.label}>
